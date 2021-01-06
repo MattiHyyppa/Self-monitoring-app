@@ -1,0 +1,145 @@
+<%- include('./partials/header.ejs') %>
+<div class="container mt-2">
+  <h1 class="font-weight-light mt-5 mb-2">Add new entry</h1>
+
+  <% if (morningReportDone) { %>
+    <div class="alert alert-info mt-3" role="alert">
+      Today's morning report is already done. Adding a new report will delete the old one.
+    </div>
+  <% } else { %>
+    <div class="alert alert-info mt-3" role="alert">
+      Today's morning report hasn't been done yet.
+    </div>
+  <% } %>
+
+  <% if (eveningReportDone) { %>
+    <div class="alert alert-info mt-3" role="alert">
+      Today's evening report is already done. Adding a new report will delete the old one.
+    </div>
+  <% } else { %>
+    <div class="alert alert-info mt-3" role="alert">
+      Today's evening report hasn't been done yet.
+    </div>
+  <% } %>
+
+  <% if (showMorning) { %>
+
+    <form method="GET" action="/behavior/reporting">
+      <input type="hidden" value="evening" name="type" >
+      <button type="submit" class="btn btn-primary mt-4">Show evening report</button>
+    </form>
+
+    <p class="lead mt-5">Morning report</p>
+    <form method="POST" action="/behavior/reporting/morning">
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'sleepDuration'}) %>
+
+      <div class="form-group mt-4">
+        <label for="sleep-duration">Sleep duration (in hours as a decimal, e.g. 8.5)</label>
+        <input class="form-control" type="number" step="0.01" id="sleep-duration" name="sleep-duration" value="<%= sleepDuration %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'sleepQuality'}) %>
+
+      <div class="form-group mt-4">
+        <label for="sleep-quality">Sleep quality</label>
+        <div style="display: flex; justify-content: space-between;">
+          <p>1 = very poor</p>
+          <p>5 = excellent</p>
+        </div>
+        <input type="range" class="custom-range" min="1" max="5" id="sleep-quality" name="sleep-quality" value="<%= sleepQuality %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'moodMorning'}) %>
+
+      <div class="form-group mt-4">
+        <label for="mood-morning">Generic mood</label>
+        <div style="display: flex; justify-content: space-between;">
+          <p>1 = very poor</p>
+          <p>5 = excellent</p>
+        </div>
+        <input type="range" class="custom-range" min="1" max="5" id="mood-morning" name="mood-morning" value="<%= moodMorning %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'date'}) %>
+
+      <div class="form-group mt-4">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" class="form-control" value="<%= date %>" required>
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">Submit</button>
+    </form>
+
+  <% } else { %>
+
+    <form method="GET" action="/behavior/reporting">
+      <input type="hidden" value="morning" name="type" >
+      <button type="submit" class="btn btn-primary mt-4">Show morning report</button>
+    </form>
+
+    <p class="lead mt-5">Evening report</p>
+    <form method="POST" action="/behavior/reporting/evening">
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'sportDuration'}) %>
+      
+      <div class="form-group mt-4">
+        <label for="sport-duration">Time spent exercising (in hours as a decimal, e.g. 1.5)</label>
+        <input class="form-control" type="number" step="0.01" id="sport-duration" name="sport-duration" value="<%= sportDuration %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'studyDuration'}) %>
+
+      <div class="form-group mt-4">
+        <label for="study-duration">Time spent studying (in hours as a decimal, e.g. 4.5)</label>
+        <input class="form-control" type="number" step="0.01" id="study-duration" name="study-duration" value="<%= studyDuration %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'eatingRegularity'}) %>
+
+      <div class="form-group mt-4">
+        <label for="eating-regularity">Eating regularity</label>
+        <div style="display: flex; justify-content: space-between;">
+          <p>1 = very poor</p>
+          <p>5 = excellent</p>
+        </div>
+        <input type="range" class="custom-range" min="1" max="5" id="eating-regularity" name="eating-regularity" value="<%= eatingRegularity %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'eatingQuality'}) %>
+
+      <div class="form-group mt-4">
+        <label for="eating-quality">Eating quality</label>
+        <div style="display: flex; justify-content: space-between;">
+          <p>1 = very poor</p>
+          <p>5 = excellent</p>
+        </div>
+        <input type="range" class="custom-range" min="1" max="5" id="eating-quality" name="eating-quality" value="<%= eatingQuality %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'moodEvening'}) %>
+
+      <div class="form-group mt-4">
+        <label for="mood-evening">Generic mood</label>
+        <div style="display: flex; justify-content: space-between;">
+          <p>1 = very poor</p>
+          <p>5 = excellent</p>
+        </div>
+        <input type="range" class="custom-range" min="1" max="5" id="mood-evening" name="mood-evening" value="<%= moodEvening %>" required>
+      </div>
+
+      <%- include('./partials/error.ejs', { errors: errors, attribute: 'date'}) %>
+
+      <div class="form-group mt-4">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" class="form-control" value="<%= date %>" required>
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">Submit</button>
+    </form>
+
+  <% } %>
+
+
+
+
+</div>
+<%- include('./partials/footer.ejs') %>

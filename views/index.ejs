@@ -1,0 +1,46 @@
+<%- include('./partials/header.ejs') %>
+<div id="bootstrap-overrides">
+  <div class="rgba-gradient intro">
+    <div class="text-center text-white">
+      <div class="container">
+        <h1 class="font-weight-light">Self-monitoring made easy</h1>
+        <p class="lead">Start tracking your daily habits, including sleep duration and quality, generic mood and time spent on sports and studying.</p>
+        <p>
+          <a href="/auth/registration" class="btn btn-primary my-2 px-4">Register</a>
+          <a href="/auth/login" class="btn btn-secondary my-2 px-4">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="font-weight-light mt-4">Average generic mood of all users</h2>
+    <% if (moodToday && moodYesterday) { %>
+      <% if (moodToday >= moodYesterday) { %>
+        <div class="alert alert-primary mt-4" role="alert">
+          Yay! Things are looking bright today! &#128512;
+        </div>
+      <% } else { %>
+        <div class="alert alert-warning mt-4" role="alert">
+          Oops... Things are looking a bit gloomy today. &#128549;
+        </div>
+      <% } %>
+    <% } %>
+    <% if (moodToday) { %>
+    <p class="lead mt-4">Today: <%= parseFloat(moodToday).toFixed(2) %> / 5</p>
+    <div class="progress mt-3">
+      <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= moodToday*100/5 %>%" aria-valuenow="<%= moodToday*100/5 %>" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <% } else { %>
+      <p class="lead mt-4">There is no data from today.</p>
+    <% } %>
+    <% if (moodYesterday) { %>
+      <p class="lead mt-4">Yesterday: <%= parseFloat(moodYesterday).toFixed(2) %> / 5</p>
+      <div class="progress mt-3">
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: <%= moodYesterday*100/5 %>%" aria-valuenow="<%= moodYesterday*100/5 %>" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <% } else { %>
+        <p class="lead mt-4">There is no data from yesterday.</p>
+      <% } %>
+  </div>
+</div>
+<%- include('./partials/footer.ejs') %>

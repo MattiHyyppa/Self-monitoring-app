@@ -1,0 +1,30 @@
+<%- include('./partials/header.ejs') %>
+<div class="container mt-5">
+  <p class="lead mb-3">Yay! Just one form to fill and you are good to go &#128512;</p>
+  <form method="POST" action="/auth/registration">
+
+    <%- include('./partials/error.ejs', { errors: errors, attribute: 'email'}) %>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" value="<%= email %>" required>
+    </div>
+
+    <%- include('./partials/error.ejs', { errors: errors, attribute: 'password'}) %>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <div class="form-group">
+      <label for="verification">Verify password</label>
+      <input type="password" class="form-control" id="verification" name="verification" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Register</button>
+  </form>
+  <div class="mt-4" style="display: flex;">
+    <p class="mr-2">Already have an account?</p>
+    <a href="/auth/login">Login</a>
+  </div>
+</div>
+<%- include('./partials/footer.ejs') %>
