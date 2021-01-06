@@ -62,6 +62,8 @@ The directory structure is as follows:
 ├── app.js
 └── deps.js
 ```
+## Important for running locally
+deno-postgres doesn't seem to be compatible with the newest Deno version (v1.6, January 2021). The app works fine with for example v1.5.2.
 
 ## Prerequisites
 - Install [Deno](https://deno.land/)
