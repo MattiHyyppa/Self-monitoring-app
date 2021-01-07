@@ -4,6 +4,7 @@ import { errorMiddleware, requestTimingMiddleware } from './middlewares/logging.
 import { serveStaticFilesMiddleware } from './middlewares/serveFiles.js';
 import { limitAccessMiddleware } from './middlewares/accessControl.js';
 import { viewEngine, engineFactory, adapterFactory, Session, oakCors } from './deps.js';
+import { port } from './config/config.js';
 
 const app = new Application();
 
@@ -26,14 +27,9 @@ app.use(oakCors());
 
 app.use(router.routes());
 
-let port = 7777;
-if (Deno.args.length > 0) {
-    const lastArgument = Deno.args[Deno.args.length - 1];
-    port = Number(lastArgument);
-  }
-
 if (!Deno.env.get('TEST')) {
     app.listen({ port: port });
+    console.log(`App is running on port ${port}.`);
 }
     
 export default app;
