@@ -14,6 +14,10 @@ else if (Deno.env.get('PRODUCTION')) {
   config.database = Deno.env.toObject().DATABASE_URL;
   console.log('Connecting to a production database.');
 }
+else if (Deno.env.get('DOCKER_ENV')) {
+  config.database = {};
+  console.log('Connecting to the database in Docker.');
+}
 else {
   config.database = {
     hostname: Deno.env.get('DB_HOST'),
