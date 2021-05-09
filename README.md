@@ -4,8 +4,16 @@ Self-monitoring app is a web application built with Deno runtime, Oak middleware
 
 Here are some screenshots from the application:
 
+The home page:
+
 <img src="images/Screenshot_1.png" alt="screenshot-1" width="600"/>
+
+Adding new entry:
+
 <img src="images/Screenshot_2.png" alt="screenshot-2" width="600"/>
+
+The summary page:
+
 <img src="images/Screenshot_3.png" alt="screenshot-3" width="600"/>
 
 The application provides users an opportunity to report their behavior daily. The behavior reported to the application are as follows:
