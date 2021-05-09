@@ -33,13 +33,15 @@ const getSummary = async ({ request, render, session }) => {
     }
   }
 
-  // If no week or month specified, let's choose last month as default.
+  // If no week or month specified, let's choose current month as default.
   if (!week && !month) {
-    month = new Date().getMonth();
+    month = new Date().getMonth() + 1;
+    /*
     // If it is January, last month is December
     if (month === 0) {
       month = 12;
     }
+    */
     year = new Date().getFullYear();
   }
 
@@ -82,6 +84,8 @@ const getSummary = async ({ request, render, session }) => {
     let other = 24 - sum;
     other = other < 0 ? 0 : other;
     data.pieChartData.dataY.push(other);
+
+    console.log(month, getMonthName(month));
   
     render('summary.ejs', {
       dataString: JSON.stringify(data),

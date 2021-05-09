@@ -2,6 +2,12 @@
 
 Self-monitoring app is a web application built with Deno runtime, Oak middleware framework, EJS templates and PostgreSQL. This project was built for the Aalto University course CS-C3170 - Web Software Development.
 
+Here are some screenshots from the application:
+
+<img src="images/Screenshot_1.png" alt="screenshot-1" width="600"/>
+<img src="images/Screenshot_2.png" alt="screenshot-2" width="600"/>
+<img src="images/Screenshot_3.png" alt="screenshot-3" width="600"/>
+
 The application provides users an opportunity to report their behavior daily. The behavior reported to the application are as follows:
   * Sleep duration and sleep quality
   * Time spent on sports and exercise
@@ -86,6 +92,12 @@ The app can be run with `Docker compose` or by installing the dependencies yours
 ## With Docker compose
 Create a database.env file in the project's root directory. There is a template in file `database.env-template` which you can copy to database.env and fill the database credentials there.
 
+Build the application by running
+```
+docker-compose build
+```
+in the project's root directory (which contains docker-compose.yml file).
+
 Run the application with
 ```
 docker-compose up
@@ -125,3 +137,6 @@ Tests can be run with the following command:
 ```
 TEST=true deno test --allow-all
 ```
+
+## Known issues
+The summary page of the application uses input elements of type month and week. Those are not supported by the desktop version of Firefox as of 05/2021.
