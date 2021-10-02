@@ -164,4 +164,4 @@ TEST=true deno test --allow-all
 ```
 
 ## Known issues
-The summary page of the application uses input elements of type month and week. Those are not supported by the desktop version of Firefox as of 05/2021.
+The summary page of the application uses input elements of type month and week. Those are not supported by the desktop version of Firefox (last checked on 05/2021).
